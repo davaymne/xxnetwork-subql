@@ -12,7 +12,7 @@ type BalanceHistory @entity{
 
 
 type BalanceEvent @entity {
-  id: ID! #this primary key is the block number + the event id
+  id: ID!
   module: String!
   event: String!
   parameters: String!
@@ -24,7 +24,7 @@ type BalanceEvent @entity {
 }
 
 type Event @entity {
-  id: ID! #this primary key is the block number + the event id
+  id: ID!
   module: String! 
   event: String!
   topics: [String]!
@@ -43,7 +43,7 @@ type CurrentHeight @entity{
 }
 
 type StakingReward @entity{
-  id: ID! #blockHeight-eventIdx
+  id: ID!
   account: SumReward!
   balance: BigInt!
   date: Date!
@@ -52,14 +52,14 @@ type StakingReward @entity{
 }
 
 type SumReward @entity{
-  id: ID! # AccountId
+  id: ID!
   totalReward: BigInt!
   blockheight: Int!
   date: Date!
 }
 
 type AccountBalance  @entity{
-  id: ID! #blockHeight-eventIdx
+  id: ID!
   account: AccountSumBalance!
   balance: BigInt!
   date: Date!
@@ -68,14 +68,14 @@ type AccountBalance  @entity{
 }
 
 type AccountSumBalance @entity{
-  id: ID! # AccountId
+  id: ID!
   totalBalance: BigInt!
   blockheight: Int!
   date: Date!
 }
 
 type AccountWithdraw  @entity{
-  id: ID! #blockHeight-eventIdx
+  id: ID!
   account: AccountSumWithdraw!
   withdraw: BigInt!
   date: Date!
@@ -84,14 +84,14 @@ type AccountWithdraw  @entity{
 }
 
 type AccountSumWithdraw @entity{
-  id: ID! # AccountId
+  id: ID!
   totalWithdraw: BigInt!
   blockheight: Int!
   date: Date!
 }
 
 type StakingKicked @entity{
-  id: ID! #blockHeight-eventIdx
+  id: ID!
   nominator: String!
   validator: String!
   date: Date!
