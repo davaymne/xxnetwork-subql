@@ -1,0 +1,15 @@
+import { SubstrateEvent, SubstrateBlock } from "@subql/types";
+export declare function extractRelatedAccountsFromEvent(event: SubstrateEvent): string[];
+export declare function balanceEvent(event: SubstrateEvent): Promise<void>;
+export declare function balanceHistory(event: SubstrateEvent): Promise<void>;
+export declare function handleEvent(event: SubstrateEvent): Promise<void>;
+export declare function handleBlock(block: SubstrateBlock): Promise<void>;
+export declare function handleEventKicked(event: SubstrateEvent): Promise<void>;
+export declare function handleStakingReward(event: SubstrateEvent): Promise<void>;
+export declare function handleStakingRewarded(event: SubstrateEvent): Promise<void>;
+export declare function handleSumReward(event: SubstrateEvent): Promise<void>;
+export declare function handleSumRewarded(event: SubstrateEvent): Promise<void>;
+export declare function handleSumDeposit(event: SubstrateEvent): Promise<void>;
+export declare function handleEventDeposit(event: SubstrateEvent): Promise<void>;
+export declare function handleSumWithdraw(event: SubstrateEvent): Promise<void>;
+export declare function handleEventWithdraw(event: SubstrateEvent): Promise<void>;

@@ -1,0 +1,100 @@
+type BalanceHistory @entity{
+  id: ID!
+  blockHeight: Int!
+  date: Date!
+  era: Int!
+  account: String!
+  free: BigInt! 
+  reserved: BigInt!
+  miscFrozen: BigInt!
+  feeFrozen: BigInt!
+}
+
+
+type BalanceEvent @entity {
+  id: ID! #this primary key is the block number + the event id
+  module: String!
+  event: String!
+  parameters: String!
+  account: String! 
+  amount: BigInt! 
+  blockHeight: Int!
+  era: Int!
+  date: Date!
+}
+
+type Event @entity {
+  id: ID! #this primary key is the block number + the event id
+  module: String! 
+  event: String!
+  topics: [String]!
+  parameters: String!
+  relatedAccounts: [String]!
+  blockHeight: Int!
+  era: Int!
+  date: Date!
+}
+
+type CurrentHeight @entity{
+  id: ID!
+  blockHeight: Int!
+  # date: Date!
+  era: Int! 
+}
+
+type StakingReward @entity{
+  id: ID! #blockHeight-eventIdx
+  account: SumReward!
+  balance: BigInt!
+  date: Date!
+  blockHeight: Int!
+  era: Int!
+}
+
+type SumReward @entity{
+  id: ID! # AccountId
+  totalReward: BigInt!
+  blockheight: Int!
+  date: Date!
+}
+
+type AccountBalance  @entity{
+  id: ID! #blockHeight-eventIdx
+  account: AccountSumBalance!
+  balance: BigInt!
+  date: Date!
+  blockHeight: Int!
+  era: Int!
+}
+
+type AccountSumBalance @entity{
+  id: ID! # AccountId
+  totalBalance: BigInt!
+  blockheight: Int!
+  date: Date!
+}
+
+type AccountWithdraw  @entity{
+  id: ID! #blockHeight-eventIdx
+  account: AccountSumWithdraw!
+  withdraw: BigInt!
+  date: Date!
+  blockHeight: Int!
+  era: Int!
+}
+
+type AccountSumWithdraw @entity{
+  id: ID! # AccountId
+  totalWithdraw: BigInt!
+  blockheight: Int!
+  date: Date!
+}
+
+type StakingKicked @entity{
+  id: ID! #blockHeight-eventIdx
+  nominator: String!
+  validator: String!
+  date: Date!
+  blockHeight: Int!
+  era: Int!  
+}

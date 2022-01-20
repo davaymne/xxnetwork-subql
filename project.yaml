@@ -1,0 +1,55 @@
+specVersion: 0.2.0
+name: subquery-staking-rewards
+version: 1.0.0
+description: 'Subquery Module 4: Staking rewards'
+repository: ''
+schema:
+  file: ./schema.graphql
+network:
+  genesisHash: '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
+  endpoint: wss://mainnet.xxlabs.net
+dataSources:
+  - kind: substrate/Runtime
+    startBlock: 1 
+    mapping:
+      file: ./dist/index.js
+      handlers:
+      - handler: handleEvent
+        kind: substrate/EventHandler
+      - handler: handleBlock
+        kind: substrate/BlockHandler
+      - handler: handleSumRewarded
+        kind: substrate/EventHandler
+        filter:
+          module: staking
+          method: Rewarded
+      - handler: handleStakingRewarded
+        kind: substrate/EventHandler
+        filter:
+          module: staking
+          method: Rewarded
+      - handler: handleSumDeposit
+        kind: substrate/EventHandler
+        filter:
+          module: balances
+          method: Deposit
+      - handler: handleEventDeposit
+        kind: substrate/EventHandler
+        filter:
+          module: balances
+          method: Deposit
+      - handler: handleSumWithdraw
+        kind: substrate/EventHandler
+        filter:
+          module: balances
+          method: Withdraw
+      - handler: handleEventWithdraw
+        kind: substrate/EventHandler
+        filter:
+          module: balances
+          method: Withdraw
+      - handler: handleEventKicked
+        kind: substrate/EventHandler
+        filter:
+          module: staking
+          method: Kicked
