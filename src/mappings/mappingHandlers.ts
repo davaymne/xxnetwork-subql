@@ -10,7 +10,6 @@ function getEventId(event: SubstrateEvent): string {
     return `${event.block.block.header.number.toString()}-${event.idx.toString()}`
 }
 
-
 export function extractRelatedAccountsFromEvent (event: SubstrateEvent): string[]{
     const accounts: string[] = [];
     let extrinsic = event.extrinsic? event.extrinsic.extrinsic: null;
@@ -68,8 +67,6 @@ export async function balanceHistory(event: SubstrateEvent): Promise<void> {
     }
 }
 
-
-
 export async function handleEvent(event: SubstrateEvent): Promise<void> {
     const eventId = getEventId(event);
     let record = await Event.get(eventId);
@@ -94,8 +91,6 @@ export async function handleEvent(event: SubstrateEvent): Promise<void> {
 
 }
 
-
-
 export async function handleBlock(block: SubstrateBlock): Promise<void> {
     let entity = new CurrentHeight(block.block.header.hash.toString());
     entity.blockHeight = block.block.header.number.toNumber();
@@ -103,7 +98,6 @@ export async function handleBlock(block: SubstrateBlock): Promise<void> {
     //entity.date = block.block.timestamp;
     await entity.save();
 }
-
 
 export async function handleEventKicked(event: SubstrateEvent): Promise<void> {
     const {event: {data: [nominator, validator]}} = event;
@@ -133,7 +127,6 @@ export async function handleStakingRewarded(event: SubstrateEvent): Promise<void
     
     await entity.save();
 }
-
 
 function createSumReward(accountId: string): SumReward {
     const entity = new SumReward(accountId);
@@ -177,7 +170,6 @@ export async function handleSumDeposit(event: SubstrateEvent): Promise<void> {
     await entity.save();
 }
 
-
 export async function handleEventDeposit(event: SubstrateEvent): Promise<void> {
     const {event: {data: [account, newDeposit]}} = event;
     const entity = new AccountBalance(`${event.block.block.header.number}-${event.idx.toString()}`);
@@ -210,7 +202,6 @@ export async function handleSumWithdraw(event: SubstrateEvent): Promise<void> {
     await entity.save();
 }
 
-
 export async function handleEventWithdraw(event: SubstrateEvent): Promise<void> {
     const {event: {data: [account, newWithdraw]}} = event;
     const entity = new AccountWithdraw(`${event.block.block.header.number}-${event.idx.toString()}`);
@@ -223,4 +214,3 @@ export async function handleEventWithdraw(event: SubstrateEvent): Promise<void> 
 
     await entity.save();
 }
-
