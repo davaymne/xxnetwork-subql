@@ -7,7 +7,7 @@ schema:
   file: ./schema.graphql
 network:
   genesisHash: '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
-  endpoint: wss://65.21.143.220:9933
+  endpoint: wss://65.21.143.220:9944
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1 
